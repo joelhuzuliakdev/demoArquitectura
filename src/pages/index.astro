@@ -42,6 +42,7 @@ import Layout from '../layouts/Layout.astro';
 				muted 
 				loop 
 				playsinline
+				poster="/galleria/galleriaExterior.webp"
 				class="w-full h-full object-cover opacity-40">
 				<source src="/video/video-fondo.mp4" type="video/mp4">
 			</video>
@@ -104,7 +105,8 @@ import Layout from '../layouts/Layout.astro';
 					<img 
 						src="/nosotros/arquitectoDos.webp" 
 						alt="Equipo de arquitectos"
-						class="w-full h-full object-cover object-top group-hover:scale-105 transition-all duration-1000">
+						class="w-full h-full object-cover object-top group-hover:scale-105 transition-all duration-1000"
+						loading="lazy">
 					
 					<div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
 
@@ -137,7 +139,7 @@ import Layout from '../layouts/Layout.astro';
 					<!-- Firma -->
 					<div class="flex items-center gap-6">
 						<div class="w-16 h-16 rounded-full overflow-hidden bg-zinc-800">
-							<img src="/nosotros/arquitecto.webp" alt="Director" class="w-full h-full object-cover">
+							<img src="/nosotros/arquitecto.webp" alt="Director" class="w-full h-full object-cover" loading="lazy">
 						</div>
 						<div>
 							<p class="text-white font-light">Arq. Juan Martínez</p>
@@ -167,7 +169,8 @@ import Layout from '../layouts/Layout.astro';
 				<img 
 					src="/filosofia/filosofia.webp" 
 					alt="Arquitectura moderna"
-					class="w-full h-full object-cover hover:grayscale-0 transition-all duration-700 group-hover:scale-105">
+					class="w-full h-full object-cover hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
+					loading="lazy">
 				<div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent opacity-60"></div>
 			</div>
 		</div>
@@ -276,7 +279,8 @@ import Layout from '../layouts/Layout.astro';
 				<img 
 					src="/proyectos/proyectoUno.webp" 
 					alt="Casa Minimalista Valle"
-					class="w-full h-full object-cover group-hover:scale-105 transition-all duration-1000">
+					class="w-full h-full object-cover group-hover:scale-105 transition-all duration-1000"
+					loading="lazy">
 				<div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
 				
 				<div class="absolute bottom-0 left-0 right-0 p-12 md:p-16">
@@ -300,7 +304,8 @@ import Layout from '../layouts/Layout.astro';
 					<img 
 						src="/proyectos/proyectoDos.webp"
 						alt="Oficinas Corporativas"
-						class="w-full h-full object-cover group-hover:scale-105 transition-all duration-1000">
+						class="w-full h-full object-cover group-hover:scale-105 transition-all duration-1000"
+						loading="lazy">
 					<div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
 					
 					<div class="absolute bottom-0 left-0 right-0 p-10">
@@ -320,7 +325,8 @@ import Layout from '../layouts/Layout.astro';
 					<img 
 						src="/proyectos/proyectoTres.webp"
 						alt="Restaurante Urbano"
-						class="w-full h-full object-cover group-hover:scale-105 transition-all duration-1000">
+						class="w-full h-full object-cover group-hover:scale-105 transition-all duration-1000"
+						loading="lazy">
 					<div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
 					
 					<div class="absolute bottom-0 left-0 right-0 p-10">
@@ -396,6 +402,7 @@ import Layout from '../layouts/Layout.astro';
 			src="/galleria/galleriaInterior.webp"
 			alt="Proyecto principal"
 			class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+			loading="lazy"
 			/>
 		</div>
 
@@ -407,6 +414,7 @@ import Layout from '../layouts/Layout.astro';
 				src="/galleria/galleriaExterior.webp"
 				alt="Proyecto secundario 1"
 				class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+				loading="lazy"
 			/>
 			</div>
 
@@ -415,6 +423,7 @@ import Layout from '../layouts/Layout.astro';
 				src="/galleria/galleriaInteriorDos.webp"
 				alt="Proyecto secundario 2"
 				class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+				loading="lazy"
 			/>
 			</div>
 
