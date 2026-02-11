@@ -800,7 +800,7 @@ import Layout from '../layouts/Layout.astro';
 					<!-- Galería con Carrusel -->
 					<div class="relative group">
 						<!-- Imagen Principal -->
-						<div class="relative h-[60vh] overflow-hidden rounded-sm bg-black">
+						<div class="relative h-[40vh] md:h-[60vh] overflow-hidden rounded-sm bg-black">
 							<img 
 								id="mainImage"
 								src="${currentImages[0]}" 
@@ -810,17 +810,13 @@ import Layout from '../layouts/Layout.astro';
 						</div>
 
 						<!-- Flechas de Navegación -->
-						<button 
-							onclick="previousImage()"
-							class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-black text-white p-3 rounded-sm opacity-0 group-hover:opacity-100 transition-all duration-300">
+						<button onclick="previousImage()" class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-black text-white p-3 rounded-sm opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-300">
 							<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
 							</svg>
 						</button>
 
-						<button 
-							onclick="nextImage()"
-							class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-black text-white p-3 rounded-sm opacity-0 group-hover:opacity-100 transition-all duration-300">
+						<button onclick="nextImage()" class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-black text-white p-3 rounded-sm opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-300">
 							<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
 							</svg>
