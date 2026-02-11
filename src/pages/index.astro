@@ -262,7 +262,7 @@ import Layout from '../layouts/Layout.astro';
 				<p class="text-gray-400 text-lg max-w-2xl font-light">Una selección de nuestros trabajos más representativos</p>
 			</div>
 
-			<!-- Proyecto 1 - Grande -->
+			<!-- Proyecto 1 -->
 			<div class="mb-1 group relative overflow-hidden bg-black h-[70vh]">
 				<img 
 					src="/proyectos/proyectoUno.webp" 
@@ -275,7 +275,9 @@ import Layout from '../layouts/Layout.astro';
 						<p class="text-blue-400 text-sm tracking-widest mb-3 font-light">RESIDENCIAL · 2024</p>
 						<h4 class="text-4xl md:text-6xl font-light text-white mb-4 tracking-tight">Casa Valle Minimalista</h4>
 						<p class="text-gray-300 text-lg mb-6 font-light">Residencia contemporánea integrada al paisaje natural. 450m² de arquitectura pura y funcional.</p>
-						<button class="text-white border border-white px-8 py-3 text-sm tracking-wider hover:bg-white hover:text-black transition-all duration-300 font-light">
+						<button 
+							onclick="openModal('proyecto1')"
+							class="text-white border border-white px-8 py-3 text-sm tracking-wider hover:bg-white hover:text-black transition-all duration-300 font-light">
 							VER PROYECTO
 						</button>
 					</div>
@@ -296,7 +298,9 @@ import Layout from '../layouts/Layout.astro';
 						<p class="text-blue-400 text-sm tracking-widest mb-2 font-light">COMERCIAL · 2024</p>
 						<h4 class="text-3xl md:text-4xl font-light text-white mb-3 tracking-tight">Torre Corporativa</h4>
 						<p class="text-gray-300 mb-4 font-light">Espacio de trabajo que redefine la productividad moderna.</p>
-						<button class="text-white text-sm tracking-wider hover:text-blue-400 transition-colors font-light">
+						<button 
+							onclick="openModal('proyecto2')"
+							class="text-white text-sm tracking-wider hover:text-blue-400 transition-colors font-light">
 							VER PROYECTO →
 						</button>
 					</div>
@@ -314,10 +318,32 @@ import Layout from '../layouts/Layout.astro';
 						<p class="text-blue-400 text-sm tracking-widest mb-2 font-light">GASTRONÓMICO · 2023</p>
 						<h4 class="text-3xl md:text-4xl font-light text-white mb-3 tracking-tight">Restaurante Fusion</h4>
 						<p class="text-gray-300 mb-4 font-light">Diseño que celebra la experiencia culinaria contemporánea.</p>
-						<button class="text-white text-sm tracking-wider hover:text-blue-400 transition-colors font-light">
+						<button 
+							onclick="openModal('proyecto3')"
+							class="text-white text-sm tracking-wider hover:text-blue-400 transition-colors font-light">
 							VER PROYECTO →
 						</button>
 					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Modal Container -->
+		<div id="projectModal" class="fixed inset-0 bg-black/90 z-50 hidden flex items-center justify-center p-4 md:p-8">
+			<!-- Modal Box -->
+			<div class="bg-zinc-900 border border-zinc-800 max-w-6xl w-full max-h-[90vh] overflow-y-auto relative rounded-sm">
+				<!-- Botón Cerrar -->
+				<button 
+					onclick="closeModal()"
+					class="sticky top-4 float-right mr-4 mt-4 text-white hover:text-blue-400 transition-colors z-10 bg-zinc-950 p-2 rounded-sm">
+					<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+					</svg>
+				</button>
+
+				<!-- Contenido del Modal -->
+				<div class="p-8 md:p-12">
+					<div id="modalContent"></div>
 				</div>
 			</div>
 		</div>
@@ -661,5 +687,243 @@ import Layout from '../layouts/Layout.astro';
 				behavior: 'smooth'
 			});
 		});
+	});
+
+	// Modal
+	const proyectos = {
+		proyecto1: {
+			titulo: "Casa Valle Minimalista",
+			categoria: "RESIDENCIAL · 2024",
+			descripcion: "Residencia contemporánea integrada al paisaje natural. 450m² de arquitectura pura y funcional.",
+			descripcionLarga: "Esta residencia contemporánea representa la perfecta fusión entre arquitectura moderna y naturaleza. Con 450m² distribuidos en dos niveles, el proyecto busca maximizar las vistas al valle mientras mantiene la privacidad de sus habitantes. Los materiales naturales como madera, piedra y concreto expuesto se combinan con amplios ventanales de piso a techo que difuminan los límites entre interior y exterior.",
+			caracteristicas: [
+				"Diseño bioclimático pasivo",
+				"Sistema de recolección de agua pluvial",
+				"Paneles solares integrados",
+				"Jardines verticales interiores",
+				"Domótica integral"
+			],
+			imagenes: [
+				"/proyectos/proyectoUno.webp",
+				"/proyectos/proyectoUno.webp",
+				"/proyectos/proyectoUno.webp",
+				"/proyectos/proyectoUno.webp"
+			]
+		},
+		proyecto2: {
+			titulo: "Torre Corporativa",
+			categoria: "COMERCIAL · 2024",
+			descripcion: "Espacio de trabajo que redefine la productividad moderna.",
+			descripcionLarga: "Edificio de oficinas de última generación que prioriza el bienestar de los trabajadores. Con 15 pisos y más de 8,000m² de espacio útil, incorpora áreas de colaboración, zonas de descanso y tecnología inteligente para crear el ambiente de trabajo ideal.",
+			caracteristicas: [
+				"Certificación LEED Platinum",
+				"Terrazas verdes en cada piso",
+				"Sistema de ventilación natural",
+				"Espacios flexibles y modulares",
+				"Gimnasio y cafetería gourmet"
+			],
+			imagenes: [
+				"/proyectos/proyectoDos.webp",
+				"/proyectos/proyectoDos.webp",
+				"/proyectos/proyectoDos.webp",
+				"/proyectos/proyectoDos.webp"
+			]
+		},
+		proyecto3: {
+			titulo: "Restaurante Fusion",
+			categoria: "GASTRONÓMICO · 2023",
+			descripcion: "Diseño que celebra la experiencia culinaria contemporánea.",
+			descripcionLarga: "Espacio gastronómico que une tradición y modernidad en un ambiente íntimo de 280m². El diseño busca crear diferentes experiencias en un solo lugar, desde la cocina abierta hasta el bar de cócteles y las áreas de comedor privadas.",
+			caracteristicas: [
+				"Cocina abierta con espectáculo",
+				"Bar de mixología artesanal",
+				"Iluminación dinámica programable",
+				"Acústica optimizada",
+				"Terraza con jardín urbano"
+			],
+			imagenes: [
+				"/proyectos/proyectoTres.webp",
+				"/proyectos/proyectoTres.webp",
+				"/proyectos/proyectoTres.webp",
+				"/proyectos/proyectoTres.webp"
+			]
+		}
+	};
+
+	let currentImageIndex = 0;
+	let currentImages = [];
+
+	function openModal(proyectoId) {
+		const proyecto = proyectos[proyectoId];
+		const modal = document.getElementById('projectModal');
+		const modalContent = document.getElementById('modalContent');
+		
+		currentImages = proyecto.imagenes;
+		currentImageIndex = 0;
+
+		// Generar características
+		const caracteristicasHTML = proyecto.caracteristicas.map(item => `
+			<li class="flex items-start">
+				<span class="text-blue-400 mr-3">•</span>
+				<span class="text-gray-300">${item}</span>
+			</li>
+		`).join('');
+
+		modalContent.innerHTML = `
+			<div class="mb-8">
+				<p class="text-blue-400 text-sm tracking-widest mb-3 font-light">${proyecto.categoria}</p>
+				<h2 class="text-4xl md:text-6xl font-light text-white mb-6">${proyecto.titulo}</h2>
+				<p class="text-gray-400 text-lg font-light leading-relaxed">${proyecto.descripcionLarga}</p>
+			</div>
+
+			<div class="grid md:grid-cols-3 gap-8">
+				<div class="md:col-span-2">
+					<h3 class="text-2xl font-light text-white mb-6">Galería del Proyecto</h3>
+					
+					<!-- Galería con Carrusel -->
+					<div class="relative group">
+						<!-- Imagen Principal -->
+						<div class="relative h-[60vh] overflow-hidden rounded-sm bg-black">
+							<img 
+								id="mainImage"
+								src="${currentImages[0]}" 
+								alt="${proyecto.titulo}"
+								class="w-full h-full object-cover"
+							/>
+						</div>
+
+						<!-- Flechas de Navegación -->
+						<button 
+							onclick="previousImage()"
+							class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-black text-white p-3 rounded-sm opacity-0 group-hover:opacity-100 transition-all duration-300">
+							<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+							</svg>
+						</button>
+
+						<button 
+							onclick="nextImage()"
+							class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-black text-white p-3 rounded-sm opacity-0 group-hover:opacity-100 transition-all duration-300">
+							<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+							</svg>
+						</button>
+
+						<!-- Indicador de Imagen -->
+						<div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/70 px-4 py-2 rounded-sm">
+							<span id="imageCounter" class="text-white text-sm font-light">
+								1 / ${currentImages.length}
+							</span>
+						</div>
+					</div>
+
+					<!-- Thumbnails -->
+					<div class="flex gap-2 mt-4 overflow-x-auto pb-2" id="thumbnailContainer">
+						${currentImages.map((img, index) => `
+							<img 
+								src="${img}" 
+								alt="Thumbnail ${index + 1}"
+								onclick="goToImage(${index})"
+								class="thumbnail w-20 h-20 object-cover rounded-sm cursor-pointer border-2 ${index === 0 ? 'border-blue-400' : 'border-transparent'} hover:border-blue-400 transition-all"
+								data-index="${index}"
+							/>
+						`).join('')}
+					</div>
+				</div>
+				
+				<div>
+					<h3 class="text-2xl font-light text-white mb-6">Características</h3>
+					<ul class="space-y-4 font-light">
+						${caracteristicasHTML}
+					</ul>
+				</div>
+			</div>
+		`;
+
+		modal.classList.remove('hidden');
+		modal.classList.add('flex');
+		document.body.style.overflow = 'hidden';
+	}
+
+	function updateImage() {
+		const mainImage = document.getElementById('mainImage');
+		const imageCounter = document.getElementById('imageCounter');
+		const thumbnails = document.querySelectorAll('.thumbnail');
+
+		if (mainImage && imageCounter) {
+			// Fade out
+			mainImage.style.opacity = '0';
+			
+			setTimeout(() => {
+				mainImage.src = currentImages[currentImageIndex];
+				imageCounter.textContent = `${currentImageIndex + 1} / ${currentImages.length}`;
+				
+				// Update thumbnails border
+				thumbnails.forEach((thumb, index) => {
+					if (index === currentImageIndex) {
+						thumb.classList.remove('border-transparent');
+						thumb.classList.add('border-blue-400');
+					} else {
+						thumb.classList.remove('border-blue-400');
+						thumb.classList.add('border-transparent');
+					}
+				});
+				
+				// Fade in
+				mainImage.style.opacity = '1';
+			}, 200);
+		}
+	}
+
+	function nextImage() {
+		currentImageIndex = (currentImageIndex + 1) % currentImages.length;
+		updateImage();
+	}
+
+	function previousImage() {
+		currentImageIndex = (currentImageIndex - 1 + currentImages.length) % currentImages.length;
+		updateImage();
+	}
+
+	function goToImage(index) {
+		currentImageIndex = index;
+		updateImage();
+	}
+
+	function closeModal() {
+		const modal = document.getElementById('projectModal');
+		modal.classList.add('hidden');
+		modal.classList.remove('flex');
+		document.body.style.overflow = 'auto';
+		currentImageIndex = 0;
+		currentImages = [];
+	}
+
+	// Cerrar con tecla ESC
+	document.addEventListener('keydown', (e) => {
+		if (e.key === 'Escape') closeModal();
+		
+		// Navegación con flechas del teclado
+		const modal = document.getElementById('projectModal');
+		if (!modal.classList.contains('hidden')) {
+			if (e.key === 'ArrowRight') nextImage();
+			if (e.key === 'ArrowLeft') previousImage();
+		}
+	});
+
+	// Cerrar al hacer click fuera del contenido
+	document.getElementById('projectModal')?.addEventListener('click', (e) => {
+		if (e.target.id === 'projectModal') closeModal();
+	});
+
+	// Transición suave en las imágenes
+	document.addEventListener('DOMContentLoaded', () => {
+		const style = document.createElement('style');
+		style.textContent = `
+			#mainImage {
+				transition: opacity 0.3s ease-in-out;
+			}
+		`;
+		document.head.appendChild(style);
 	});
 </script>
