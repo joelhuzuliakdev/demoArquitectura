@@ -631,6 +631,37 @@ import Layout from '../layouts/Layout.astro';
 	#servicios > div:first-child > div:first-child {
 		animation: gridPulse 4s ease-in-out infinite;
 	}
+
+	/* Barra de progreso en desktop */
+	nav a {
+		position: relative;
+	}
+
+	nav a::after {
+		content: '';
+		position: absolute;
+		bottom: -8px;
+		left: 0;
+		width: 0%;
+		height: 2px;
+		background: linear-gradient(90deg, #3b82f6, #06b6d4);
+		transition: width 0.3s ease;
+	}
+
+	nav a.active::after {
+		width: 100%;
+	}
+
+	/* Highlight en mobile */
+	#mobile-menu a.active {
+		color: #3b82f6;
+		background: rgba(59, 130, 246, 0.1);
+		padding: 12px 0;
+	}
+
+	#mobile-menu a {
+		transition: all 0.3s ease;
+	}
 </style>
 
 <script is:inline>
@@ -647,10 +678,60 @@ import Layout from '../layouts/Layout.astro';
 			mobileMenu.classList.toggle('hidden');
 		});
 
+		// **NUEVA FUNCIONALIDAD: Active section tracking**
+		const sections = document.querySelectorAll('section[id]');
+		const navLinks = document.querySelectorAll('nav a[href^="#"]');
+		const mobileNavLinks = document.querySelectorAll('#mobile-menu a[href^="#"]');
+
+		function setActiveLink() {
+			let currentSection = '';
+			
+			sections.forEach(section => {
+				const sectionTop = section.offsetTop;
+				const sectionHeight = section.clientHeight;
+				
+				// Ajusta el offset para que se active antes
+				if (window.pageYOffset >= (sectionTop - 200)) {
+					currentSection = section.getAttribute('id');
+				}
+			});
+
+			// Desktop links
+			navLinks.forEach(link => {
+				link.classList.remove('active');
+				if (link.getAttribute('href') === `#${currentSection}`) {
+					link.classList.add('active');
+				}
+			});
+
+			// Mobile links
+			mobileNavLinks.forEach(link => {
+				link.classList.remove('active');
+				if (link.getAttribute('href') === `#${currentSection}`) {
+					link.classList.add('active');
+				}
+			});
+		}
+
+		// Ejecutar al hacer scroll
+		window.addEventListener('scroll', setActiveLink);
+
+		// Ejecutar al cargar la página
+		setActiveLink();
+
+		// Cerrar mobile menu al hacer click en un link
+		mobileNavLinks.forEach(link => {
+			link.addEventListener('click', () => {
+				mobileMenu.classList.add('hidden');
+			});
+		});
+
+		// --- Resto del código existente ---
+
 		function animateCounter(counter) {
 			const target = parseInt(counter.getAttribute('data-target'));
-			const duration = 2000; // 2 segundos
-			const frameRate = 1000 / 60; // 60 FPS
+			const duration = 2000;
+			const frameRate = 1000 / 60;
 			const totalFrames = Math.round(duration / frameRate);
 			const increment = target / totalFrames;
 			let current = 0;
@@ -669,9 +750,8 @@ import Layout from '../layouts/Layout.astro';
 			}, frameRate);
 		}
 
-		// Intersection Observer para detectar cuando la sección es visible
 		const observerOptions = {
-			threshold: 0.3, // Se activa cuando el 30% de la sección es visible
+			threshold: 0.3,
 			rootMargin: '0px'
 		};
 
@@ -686,16 +766,14 @@ import Layout from '../layouts/Layout.astro';
 			});
 		}, observerOptions);
 
-		// Observar la sección de estadísticas
 		const statsSection = document.getElementById('stats-section');
 		if (statsSection) {
 			observer.observe(statsSection);
 		}
 
-		// Funcionalidad del botón Scroll to Top
+		// Scroll to Top Button
 		const scrollToTopBtn = document.getElementById('scroll-to-top');
 		
-		// Mostrar/ocultar botón según scroll
 		window.addEventListener('scroll', function() {
 			if (window.pageYOffset > 300) {
 				scrollToTopBtn.classList.remove('opacity-0', 'pointer-events-none');
@@ -706,7 +784,6 @@ import Layout from '../layouts/Layout.astro';
 			}
 		});
 		
-		// Scroll suave al hacer clic
 		scrollToTopBtn.addEventListener('click', function() {
 			window.scrollTo({
 				top: 0,
